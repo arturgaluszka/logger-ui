@@ -4,6 +4,7 @@ const filter = (state = "", action) => {
     switch (action.type) {
         case CHANGE_FILTER:
             console.log("FIlter changed.",action.filter);
+            break;
             //todo: here return filteredState
             // return action.filter;
         default:
