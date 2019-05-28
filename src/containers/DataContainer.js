@@ -1,5 +1,5 @@
 import React from "react";
-import DBElement from "./DBElement";
+import DBElement from "../components/DBElement";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import DataContainer from "./DataContainer";
+import DataContainer from "../containers/DataContainer";
 import TopNav from "./TopNav";
 
 function App() {
