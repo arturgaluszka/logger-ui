@@ -2,7 +2,7 @@ import React from "react";
 import DBElement from "../components/DBElement";
 import Table from "react-bootstrap/Table";
 // import Button from "react-bootstrap/Button";
-import {loadData} from "../actions";
+import {changeFilter, loadData} from "../actions";
 import {connect} from "react-redux";
 
 class DataContainer extends React.Component {
@@ -11,6 +11,7 @@ class DataContainer extends React.Component {
             .then(rs => rs.json())
             .then(data => {
                 this.props.loadData(data);
+                this.props.changeFilter('');
                 // this.setState({data: data});
             })
             .catch(reason => console.log('ERROR:', reason));
@@ -37,7 +38,7 @@ class DataContainer extends React.Component {
                     </th>
                 </tr>
                 {console.log('props DC', this.props)}
-                {this.props.data.map((value, i) =>
+                {this.props.current.map((value, i) =>
                     <DBElement key={i} id={value.id} field={value.field} onDelete={this.deletePojo.bind(this)}/>)}
                 </tbody>
             </Table>
@@ -85,14 +86,15 @@ class DataContainer extends React.Component {
 const mapStateToProps = state => {
     console.log('state DC', state);
     return {
-        data: state.data.data,
+        current: state.data.current,
         filter: state.data.filter
     };
 };
 
 function mapDispatchToProps(dispatch) {
     return {
-        loadData: (data) => dispatch(loadData(data))
+        loadData: (data) => dispatch(loadData(data)),
+        changeFilter: (filter) => dispatch(changeFilter(filter))
     }
 }
 
