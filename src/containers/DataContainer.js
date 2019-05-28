@@ -1,23 +1,17 @@
 import React from "react";
 import DBElement from "../components/DBElement";
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
+import {loadData} from "../actions";
+import {connect} from "react-redux";
 
 class DataContainer extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            inputValue: ''
-        };
-    }
-
     componentDidMount() {
         fetch('http://localhost:8080/pojo')
             .then(rs => rs.json())
             .then(data => {
-                this.setState({data: data});
+                this.props.loadData(data);
+                // this.setState({data: data});
             })
             .catch(reason => console.log('ERROR:', reason));
     }
@@ -36,13 +30,14 @@ class DataContainer extends React.Component {
                 <tr>
                     <th></th>
                     <th>
-                        <input value={this.state.inputValue} onChange={this.updateInputValue.bind(this)}/>
+                        {/*<input value={this.state.inputValue} onChange={this.updateInputValue.bind(this)}/>*/}
                     </th>
                     <th>
-                        <Button variant="dark" onClick={this.addPojo.bind(this,)}>ADD</Button>
+                        {/*<Button variant="dark" onClick={this.addPojo.bind(this,)}>ADD</Button>*/}
                     </th>
                 </tr>
-                {this.state.data.map((value, i) =>
+                {console.log('props DC', this.props)}
+                {this.props.data.map((value, i) =>
                     <DBElement key={i} id={value.id} field={value.field} onDelete={this.deletePojo.bind(this)}/>)}
                 </tbody>
             </Table>
@@ -83,8 +78,22 @@ class DataContainer extends React.Component {
     }
 
     dataWithoutDeleted(id) {
-        return this.state.data.filter((value) => value.id !== id);
+        return this.props.data.filter((value) => value.id !== id);
     }
 }
 
-export default DataContainer;
+const mapStateToProps = state => {
+    console.log('state DC', state);
+    return {
+        data: state.data.data,
+        filter: state.data.filter
+    };
+};
+
+function mapDispatchToProps(dispatch) {
+    return {
+        loadData: (data) => dispatch(loadData(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataContainer);

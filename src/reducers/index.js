@@ -1,8 +1,6 @@
 import {combineReducers} from "redux";
-import filter from "./filter"
-import load from "./load"
+import data from "./data"
 
 export default combineReducers({
-    filter,
-    load
+    data
 })
