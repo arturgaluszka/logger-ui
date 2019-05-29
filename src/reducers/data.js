@@ -1,4 +1,4 @@
-import {ADD_DATA, CHANGE_FILTER} from './../actions'
+import {ADD_DATA, CHANGE_FILTER, REMOVE_DATA} from './../actions'
 import {LOAD_DATA} from "../actions";
 
 const data = (state = {current: [], filter: '', loadedData: []}, action) => {
@@ -15,6 +15,12 @@ const data = (state = {current: [], filter: '', loadedData: []}, action) => {
             return Object.assign({},state,{
                 loadedData: loadedData,
                 current : filter(loadedData, state.filter)
+            });
+        case REMOVE_DATA:
+            let loadedDataRemoved = state.loadedData.filter((entry)=> entry.id !== action.toRemove);
+            return Object.assign({},state,{
+                loadedData: loadedDataRemoved,
+                current : filter(loadedDataRemoved, state.filter)
             });
         case CHANGE_FILTER:
             console.log("Filter changed.", action.filter);

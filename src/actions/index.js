@@ -13,6 +13,11 @@ export const addData = data => ({
     data
 });
 
+export const removeData = toRemove => ({
+    type: REMOVE_DATA,
+    toRemove
+})
+
 export const changeAddInput = input => ({
    type: CHANGE_ADD_INPUT,
    input
@@ -21,4 +26,5 @@ export const changeAddInput = input => ({
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const LOAD_DATA = 'LOAD_DATA';
 export const ADD_DATA = 'ADD_DATA';
+export const REMOVE_DATA = 'REMOVE_DATA';
 export const CHANGE_ADD_INPUT = 'CHANGE_ADD_INPUT';

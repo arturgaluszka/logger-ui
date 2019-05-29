@@ -1,7 +1,7 @@
 import React from "react";
 import DBElement from "../components/DBElement";
 import Table from "react-bootstrap/Table";
-import {addData, changeAddInput, changeFilter, loadData} from "../actions";
+import {addData, changeAddInput, changeFilter, loadData, removeData} from "../actions";
 import {connect} from "react-redux";
 import Button from "react-bootstrap/Button";
 
@@ -61,15 +61,9 @@ class DataContainer extends React.Component {
             method: 'delete'
         }).then(
             () => {
-                this.setState({
-                    data: this.dataWithoutDeleted(id)
-                });
+                this.props.remove(id);
             }
         );
-    }
-
-    dataWithoutDeleted(id) {
-        return this.props.data.filter((value) => value.id !== id);
     }
 }
 
@@ -87,7 +81,8 @@ function mapDispatchToProps(dispatch) {
         loadData: (data) => dispatch(loadData(data)),
         changeFilter: (filter) => dispatch(changeFilter(filter)),
         changeAddInput: (event) => dispatch(changeAddInput(event.target.value)),
-        add: (toAdd) => dispatch(addData(toAdd))
+        add: (toAdd) => dispatch(addData(toAdd)),
+        remove: (toRemove) => dispatch(removeData(toRemove))
     }
 }
 

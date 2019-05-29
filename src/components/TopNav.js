@@ -18,7 +18,6 @@ export class TopNav extends React.Component {
                 </Nav>
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange.bind(this)}/>
-                    <Button variant="outline-success">Search</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>;
