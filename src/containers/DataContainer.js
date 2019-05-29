@@ -1,9 +1,9 @@
 import React from "react";
 import DBElement from "../components/DBElement";
 import Table from "react-bootstrap/Table";
-// import Button from "react-bootstrap/Button";
-import {changeFilter, loadData} from "../actions";
+import {addData, changeAddInput, changeFilter, loadData} from "../actions";
 import {connect} from "react-redux";
+import Button from "react-bootstrap/Button";
 
 class DataContainer extends React.Component {
     componentDidMount() {
@@ -12,7 +12,6 @@ class DataContainer extends React.Component {
             .then(data => {
                 this.props.loadData(data);
                 this.props.changeFilter('');
-                // this.setState({data: data});
             })
             .catch(reason => console.log('ERROR:', reason));
     }
@@ -31,13 +30,12 @@ class DataContainer extends React.Component {
                 <tr>
                     <th></th>
                     <th>
-                        {/*<input value={this.state.inputValue} onChange={this.updateInputValue.bind(this)}/>*/}
+                        <input value={this.props.addInput} onChange={this.props.changeAddInput.bind(this)}/>
                     </th>
                     <th>
-                        {/*<Button variant="dark" onClick={this.addPojo.bind(this,)}>ADD</Button>*/}
+                        <Button variant="dark" onClick={this.addPojo.bind(this)}>ADD</Button>
                     </th>
                 </tr>
-                {console.log('props DC', this.props)}
                 {this.props.current.map((value, i) =>
                     <DBElement key={i} id={value.id} field={value.field} onDelete={this.deletePojo.bind(this)}/>)}
                 </tbody>
@@ -45,24 +43,16 @@ class DataContainer extends React.Component {
         </div>
     }
 
-    updateInputValue(evt) {
-        this.setState({
-            inputValue: evt.target.value
-        });
-    }
-
     addPojo() {
         const postData = new URLSearchParams();
-        postData.append('field', this.state.inputValue);
+        postData.append('field', this.props.addInput);
         console.log(this);
         fetch('http://localhost:8080/pojo/',
             {method: 'POST', body: postData})
             .then(response => response.json())
             .then(response => {
-                console.log(this);
-                this.setState(prevState => ({
-                    data: [...prevState.data, response]
-                }))
+                console.log('added', this);
+                this.props.add(response);
             })
     }
 
@@ -87,14 +77,17 @@ const mapStateToProps = state => {
     console.log('state DC', state);
     return {
         current: state.data.current,
-        filter: state.data.filter
+        filter: state.data.filter,
+        addInput: state.addInput
     };
 };
 
 function mapDispatchToProps(dispatch) {
     return {
         loadData: (data) => dispatch(loadData(data)),
-        changeFilter: (filter) => dispatch(changeFilter(filter))
+        changeFilter: (filter) => dispatch(changeFilter(filter)),
+        changeAddInput: (event) => dispatch(changeAddInput(event.target.value)),
+        add: (toAdd) => dispatch(addData(toAdd))
     }
 }
 

@@ -8,16 +8,17 @@ export const loadData = data => ({
     data
 });
 
-export const addData = name => ({
+export const addData = data => ({
    type: ADD_DATA,
-    name
+    data
 });
 
-// export const VisibilityFilters = {
-//     ALL_ENTRIES: 'ALL_ENTRIES',
-//     FILTERED_ENTRIES: 'FILTERED_ENTRIES'
-// }
+export const changeAddInput = input => ({
+   type: CHANGE_ADD_INPUT,
+   input
+});
 
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const LOAD_DATA = 'LOAD_DATA';
 export const ADD_DATA = 'ADD_DATA';
+export const CHANGE_ADD_INPUT = 'CHANGE_ADD_INPUT';
