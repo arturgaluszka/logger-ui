@@ -1,5 +1,5 @@
 import React from "react";
-import DBElement from "../components/DBElement";
+import DBElement from "./DBElement";
 import Table from "react-bootstrap/Table";
 import {addData, changeAddInput, changeFilter, loadData, removeData} from "../actions";
 import {connect} from "react-redux";
@@ -33,7 +33,7 @@ class DataContainer extends React.Component {
                         <input value={this.props.addInput} onChange={this.props.changeAddInput.bind(this)}/>
                     </th>
                     <th>
-                        <Button variant="dark" onClick={this.addPojo.bind(this)}>ADD</Button>
+                        <Button variant="dark" disabled={!this.props.addInput} onClick={this.addPojo.bind(this)}>ADD</Button>
                     </th>
                 </tr>
                 {this.props.current.map((value, i) =>

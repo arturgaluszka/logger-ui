@@ -3,11 +3,18 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/es/FormControl";
-import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
 import {changeFilter} from "../actions";
+import {Button} from "react-bootstrap";
 
 export class TopNav extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchInput: ''
+        }
+    }
+
     render() {
         return <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="/">Mongo CRUD</Navbar.Brand>
@@ -17,17 +24,23 @@ export class TopNav extends React.Component {
                     <Nav.Link href="/">Home</Nav.Link>
                 </Nav>
                 <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleChange.bind(this)}/>
+                    <FormControl value={this.state.searchInput} type="text" placeholder="Search" className="mr-sm-2" onChange={this.searchInputChange.bind(this)}/>
+                    <Button variant="dark" onClick={this.clear.bind(this)}>clear</Button>
                 </Form>
             </Navbar.Collapse>
         </Navbar>;
     }
 
-    handleChange(event) {
+    searchInputChange(event) {
         let fieldValue = event.target.value;
+        this.setState({searchInput: fieldValue});
         this.props.doFilter(fieldValue);
     }
 
+    clear(event) {
+        this.setState({searchInput:''});
+        this.searchInputChange(event);
+    }
 
 }
 const mapStateToProps = state => {
