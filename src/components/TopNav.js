@@ -16,7 +16,7 @@ export class TopNav extends React.Component {
     }
 
     render() {
-        return <Navbar bg="dark" variant="dark">
+        return <Navbar className={'top-nav'} bg="dark" variant="dark">
             <Navbar.Brand href="/">Mongo CRUD</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">

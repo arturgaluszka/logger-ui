@@ -1,8 +1,27 @@
 .App {
   text-align: center;
+  height: 100%;
+}
+
+.main-container {
+  /*height: 100%;*/
 }
 
 .data-container {
   display: flex;
+  overflow-y: auto;
+  width: 100%;
   justify-content: center;
+  height: 80%;
+
+}
+
+.top-nav {
+  height: 50px;
+  overflow: hidden;
+}
+
+.footer {
+  height: 80px;
+  overflow: hidden;
 }
