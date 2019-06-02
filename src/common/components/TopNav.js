@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/es/FormControl";
 import {connect} from "react-redux";
-import {changeFilter} from "../actions";
+import {changeFilter} from "../../pojo/actions/pojoActions";
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 

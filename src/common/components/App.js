@@ -1,10 +1,10 @@
 import React from 'react';
-import '../App.css';
-import DataContainer from "./DataContainer";
+import '../../App.css';
+import DataContainer from "./../../pojo/components/DataContainer";
 import TopNav from "./TopNav";
 import Footer from "./Footer";
 import {Route} from "react-router";
-import Log from "./Log";
+import Log from "./../../log/components/Log";
 
 function App() {
     return (

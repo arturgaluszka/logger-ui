@@ -1,4 +1,4 @@
-import {CHANGE_ADD_INPUT} from './../actions'
+import {CHANGE_ADD_INPUT} from '../actions/pojoActions'
 
 const addInput = (state = '', action) => {
     switch (action.type) {

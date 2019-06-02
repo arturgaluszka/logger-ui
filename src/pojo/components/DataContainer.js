@@ -1,10 +1,10 @@
 import React from "react";
 import DBElement from "./DBElement";
 import Table from "react-bootstrap/Table";
-import {addData, changeAddInput, changeFilter, loadData, removeData} from "../actions";
+import {addData, changeAddInput, changeFilter, loadData, removeData} from "../actions/pojoActions";
 import {connect} from "react-redux";
 import Button from "react-bootstrap/Button";
-import {properties} from "../properties";
+import {properties} from "../../properties";
 
 class DataContainer extends React.Component {
     componentDidMount() {

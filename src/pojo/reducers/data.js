@@ -1,5 +1,5 @@
-import {ADD_DATA, CHANGE_FILTER, REMOVE_DATA} from './../actions'
-import {LOAD_DATA} from "../actions";
+import {ADD_DATA, CHANGE_FILTER, REMOVE_DATA} from '../actions/pojoActions'
+import {LOAD_DATA} from "../actions/pojoActions";
 
 const data = (state = {current: [], filter: '', loadedData: []}, action) => {
     switch (action.type) {
