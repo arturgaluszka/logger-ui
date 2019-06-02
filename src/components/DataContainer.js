@@ -4,10 +4,11 @@ import Table from "react-bootstrap/Table";
 import {addData, changeAddInput, changeFilter, loadData, removeData} from "../actions";
 import {connect} from "react-redux";
 import Button from "react-bootstrap/Button";
+import {properties} from "../properties";
 
 class DataContainer extends React.Component {
     componentDidMount() {
-        fetch('http://localhost:8080/pojo')
+        fetch(properties.dataUrl)
             .then(rs => rs.json())
             .then(data => {
                 this.props.loadData(data);
@@ -28,12 +29,13 @@ class DataContainer extends React.Component {
                 </thead>
                 <tbody>
                 <tr>
-                    <th></th>
+                    <th/>
                     <th>
                         <input value={this.props.addInput} onChange={this.props.changeAddInput.bind(this)}/>
                     </th>
                     <th>
-                        <Button variant="dark" disabled={!this.props.addInput} onClick={this.addPojo.bind(this)}>ADD</Button>
+                        <Button variant="dark" disabled={!this.props.addInput}
+                                onClick={this.addPojo.bind(this)}>ADD</Button>
                     </th>
                 </tr>
                 {this.props.current.map((value, i) =>
@@ -47,7 +49,7 @@ class DataContainer extends React.Component {
         const postData = new URLSearchParams();
         postData.append('field', this.props.addInput);
         console.log(this);
-        fetch('http://localhost:8080/pojo/',
+        fetch(properties.dataUrl,
             {method: 'POST', body: postData})
             .then(response => response.json())
             .then(response => {
@@ -57,7 +59,7 @@ class DataContainer extends React.Component {
     }
 
     deletePojo(id) {
-        fetch('http://localhost:8080/pojo/' + id, {
+        fetch(properties.dataUrl + '/' + id, {
             method: 'delete'
         }).then(
             () => {
