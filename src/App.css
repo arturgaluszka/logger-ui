@@ -1,26 +1,28 @@
+body, html, #root {
+  height: 100%;
+  margin: 0
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-flow: column;
   height: 100%;
 }
 
 .main-container {
-  /*height: 100%;*/
+  flex: 1;
 }
 
 .data-container {
-  display: flex;
   overflow-y: auto;
   width: 100%;
   justify-content: center;
-  height: 80%;
 }
 
 .top-nav {
-  height: 50px;
-  overflow: hidden;
+  flex: 0 1 auto;
 }
 
 .footer {
-  height: 80px;
-  overflow: hidden;
+  flex: 0 1 auto;
 }
