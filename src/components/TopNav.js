@@ -22,10 +22,8 @@ export class TopNav extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/log">Log</Nav.Link>
-                    <Link to='/'>HOME_ROUTER</Link>
-                    <Link to='/log'>LOG_ROUTER</Link>
+                    <Nav.Link as={Link} href="/" to='/'>Home</Nav.Link>
+                    <Nav.Link as={Link} href="/log" to='/log'>Log</Nav.Link>
                 </Nav>
                 <Form inline>
                     <FormControl value={this.state.searchInput} type="text" placeholder="Search" className="mr-sm-2" onChange={this.searchInputChange.bind(this)}/>
