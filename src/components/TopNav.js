@@ -6,6 +6,7 @@ import FormControl from "react-bootstrap/es/FormControl";
 import {connect} from "react-redux";
 import {changeFilter} from "../actions";
 import {Button} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 export class TopNav extends React.Component {
     constructor(props) {
@@ -22,6 +23,9 @@ export class TopNav extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/log">Log</Nav.Link>
+                    <Link to='/'>HOME_ROUTER</Link>
+                    <Link to='/log'>LOG_ROUTER</Link>
                 </Nav>
                 <Form inline>
                     <FormControl value={this.state.searchInput} type="text" placeholder="Search" className="mr-sm-2" onChange={this.searchInputChange.bind(this)}/>
